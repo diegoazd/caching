@@ -12,7 +12,6 @@ public class SimpleBookRepository implements BookRepository {
         simulateSlowService();
         return new Book(isbn, "Some book");
     }
-
     // Don't do this at home
     private void simulateSlowService() {
         try {
