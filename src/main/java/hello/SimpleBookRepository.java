@@ -3,11 +3,14 @@ package hello;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
+import java.util.logging.Logger;
+
 @Component
 public class SimpleBookRepository implements BookRepository {
+    public static final Logger log = Logger.getAnonymousLogger();
 
     @Override
-    @Cacheable("books")
+    @Cacheable(value = "books")
     public Book getByIsbn(String isbn) {
         simulateSlowService();
         return new Book(isbn, "Some book");
@@ -15,6 +18,7 @@ public class SimpleBookRepository implements BookRepository {
     // Don't do this at home
     private void simulateSlowService() {
         try {
+            log.info("Getting new instance");
             long time = 3000L;
             Thread.sleep(time);
         } catch (InterruptedException e) {

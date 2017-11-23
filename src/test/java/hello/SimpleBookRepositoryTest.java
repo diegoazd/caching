@@ -17,30 +17,18 @@ public class SimpleBookRepositoryTest {
     @Autowired
     BookRepository bookRepository;
 
-    @Test(timeout = 3500)
+    @Test(timeout = 6500)
     public void shouldUseCacheForMultipleRequests() {
         bookRepository.getByIsbn("81231211AD1");
         bookRepository.getByIsbn("81231211AD1");
+        bookRepository.getByIsbn("81231211AD2");
         bookRepository.getByIsbn("81231211AD1");
+        bookRepository.getByIsbn("81231211AD2");
         bookRepository.getByIsbn("81231211AD1");
+        bookRepository.getByIsbn("81231211AD2");
         bookRepository.getByIsbn("81231211AD1");
-        bookRepository.getByIsbn("81231211AD1");
-        bookRepository.getByIsbn("81231211AD1");
+        assertNotNull(bookRepository.getByIsbn("81231211AD2"));
 
-        assertTrue(2 > 1);
     }
 
-    @Test(timeout = 3500)
-    public void shouldUseCacheNoCacheForMultipleRequests() {
-        BookRepository bookRepository = new SimpleBookRepository();
-        bookRepository.getByIsbn("81231211AD1");
-        bookRepository.getByIsbn("81231211AD1");
-        bookRepository.getByIsbn("81231211AD1");
-        bookRepository.getByIsbn("81231211AD1");
-        bookRepository.getByIsbn("81231211AD1");
-        bookRepository.getByIsbn("81231211AD1");
-        bookRepository.getByIsbn("81231211AD1");
-
-        assertTrue(2 > 1);
-    }
 }
