@@ -1,20 +1,35 @@
 package hello;
 
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate4.HibernateTemplate;
+import org.springframework.stereotype.Repository;
 
-@Component
+import javax.transaction.Transactional;
+import java.util.logging.Logger;
+
+@Repository
+@Transactional
 public class SimpleBookRepository implements BookRepository {
 
+    public static final Logger log = Logger.getAnonymousLogger();
+
+    @Autowired
+    private HibernateTemplate hibernateTemplate;
+
     @Override
-    @Cacheable("books")
     public Book getByIsbn(String isbn) {
-        simulateSlowService();
-        return new Book(isbn, "Some book");
+        return hibernateTemplate.get(Book.class, isbn);
     }
+
+    @Override
+    public void save(String isbn, String title) {
+       hibernateTemplate.save(new Book(isbn, title));
+    }
+
     // Don't do this at home
     private void simulateSlowService() {
         try {
+            log.info("Getting book");
             long time = 3000L;
             Thread.sleep(time);
         } catch (InterruptedException e) {

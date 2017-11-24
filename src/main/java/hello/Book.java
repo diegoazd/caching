@@ -1,9 +1,21 @@
 package hello;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="book")
 public class Book {
 
+    @Id
     private String isbn;
+
+    @Column
     private String title;
+
+    public Book() {}
 
     public Book(String isbn, String title) {
         this.isbn = isbn;
