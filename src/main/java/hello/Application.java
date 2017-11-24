@@ -30,7 +30,7 @@ public class Application {
     public DataSource getDataSource() {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://192.168.0.14:3306/books");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/books");
         dataSource.setUsername("root");
         dataSource.setPassword("root");
 
