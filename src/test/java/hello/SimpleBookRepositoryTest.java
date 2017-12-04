@@ -1,7 +1,5 @@
 package hello;
 
-import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +15,16 @@ public class SimpleBookRepositoryTest {
     @Autowired
     BookRepository bookRepository;
 
-    @Test(timeout = 6500)
+    @Test
     public void shouldUseCacheForMultipleRequests() {
         bookRepository.getByIsbn("81231211AD1");
-        bookRepository.getByIsbn("81231211AD1");
         bookRepository.getByIsbn("81231211AD2");
+        try {
+            Thread.sleep(30000l);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        bookRepository.getByIsbn("81231211AD1");
         bookRepository.getByIsbn("81231211AD1");
         bookRepository.getByIsbn("81231211AD2");
         bookRepository.getByIsbn("81231211AD1");
