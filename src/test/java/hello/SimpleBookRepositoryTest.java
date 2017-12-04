@@ -1,7 +1,5 @@
 package hello;
 
-import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,30 +15,32 @@ public class SimpleBookRepositoryTest {
     @Autowired
     BookRepository bookRepository;
 
-    @Test(timeout = 3500)
+    @Test(timeout = 6100)
     public void shouldUseCacheForMultipleRequests() {
-        bookRepository.getByIsbn("81231211AD1");
-        bookRepository.getByIsbn("81231211AD1");
-        bookRepository.getByIsbn("81231211AD1");
-        bookRepository.getByIsbn("81231211AD1");
-        bookRepository.getByIsbn("81231211AD1");
-        bookRepository.getByIsbn("81231211AD1");
-        bookRepository.getByIsbn("81231211AD1");
+        assertEquals(bookRepository.getByIsbn("81231211AD1").getIsbn(), "81231211AD1");
+        assertEquals(bookRepository.getByIsbn("81231211AD1").getIsbn(), "81231211AD1");
+        assertEquals(bookRepository.getByIsbn("81231211AD1").getIsbn(), "81231211AD1");
+        assertEquals(bookRepository.getByIsbn("81231211AD1").getIsbn(), "81231211AD1");
+        assertEquals(bookRepository.getByIsbn("81231211AD1").getIsbn(), "81231211AD1");
+        assertEquals(bookRepository.getByIsbn("81231211AD1").getIsbn(), "81231211AD1");
 
-        assertTrue(2 > 1);
+        assertEquals(bookRepository.getByIsbn("81231211AD2").getIsbn(), "81231211AD2");
+        assertEquals(bookRepository.getByIsbn("81231211AD2").getIsbn(), "81231211AD2");
+        assertEquals(bookRepository.getByIsbn("81231211AD2").getIsbn(), "81231211AD2");
+        assertEquals(bookRepository.getByIsbn("81231211AD2").getIsbn(), "81231211AD2");
+        assertEquals(bookRepository.getByIsbn("81231211AD2").getIsbn(), "81231211AD2");
+        assertEquals(bookRepository.getByIsbn("81231211AD2").getIsbn(), "81231211AD2");
+        assertEquals(bookRepository.getByIsbn("81231211AD2").getIsbn(), "81231211AD2");
     }
 
     @Test(timeout = 3500)
     public void shouldUseCacheNoCacheForMultipleRequests() {
         BookRepository bookRepository = new SimpleBookRepository();
-        bookRepository.getByIsbn("81231211AD1");
-        bookRepository.getByIsbn("81231211AD1");
-        bookRepository.getByIsbn("81231211AD1");
-        bookRepository.getByIsbn("81231211AD1");
-        bookRepository.getByIsbn("81231211AD1");
-        bookRepository.getByIsbn("81231211AD1");
-        bookRepository.getByIsbn("81231211AD1");
-
-        assertTrue(2 > 1);
+        assertEquals(bookRepository.getByIsbn("81231211AD1").getIsbn(), "81231211AD1");
+        assertEquals(bookRepository.getByIsbn("81231211AD1").getIsbn(), "81231211AD1");
+        assertEquals(bookRepository.getByIsbn("81231211AD1").getIsbn(), "81231211AD1");
+        assertEquals(bookRepository.getByIsbn("81231211AD1").getIsbn(), "81231211AD1");
+        assertEquals(bookRepository.getByIsbn("81231211AD1").getIsbn(), "81231211AD1");
+        assertEquals(bookRepository.getByIsbn("81231211AD1").getIsbn(), "81231211AD1");
     }
 }
