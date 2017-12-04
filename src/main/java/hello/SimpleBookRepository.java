@@ -18,7 +18,7 @@ public class SimpleBookRepository implements BookRepository {
     // Don't do this at home
     private void simulateSlowService() {
         try {
-            log.info("Getting new instance");
+            log.info("Fetching new instance");
             long time = 3000L;
             Thread.sleep(time);
         } catch (InterruptedException e) {

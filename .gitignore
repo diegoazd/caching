@@ -8,6 +8,7 @@ Thumbs.db
 *~
 *.sublime-*
 out/
+*.class
 
 # Build Artifacts
 

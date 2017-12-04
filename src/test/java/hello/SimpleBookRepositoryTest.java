@@ -20,7 +20,7 @@ public class SimpleBookRepositoryTest {
         bookRepository.getByIsbn("81231211AD1");
         bookRepository.getByIsbn("81231211AD2");
         try {
-            Thread.sleep(30000l);
+            Thread.sleep(60000l);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -30,6 +30,7 @@ public class SimpleBookRepositoryTest {
         bookRepository.getByIsbn("81231211AD1");
         bookRepository.getByIsbn("81231211AD2");
         bookRepository.getByIsbn("81231211AD1");
+        assertNotNull(bookRepository.getByIsbn("81231211AD1"));
         assertNotNull(bookRepository.getByIsbn("81231211AD2"));
 
     }
